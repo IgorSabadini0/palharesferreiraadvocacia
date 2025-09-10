@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Bloquear arquivos sensíveis
+Disallow: /README.txt
+
+Sitemap: https://igorsabadini157.github.io/pfadvocacia//sitemap.xml
+
+

@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Inventário",
+    "date": "09/04/2025",
+    "excerpt": "Iventário e como funciona",
+    "url": "post.html?slug=como-funciona-inventario"
+  },
+  {
+    "title": "Aposentadoria",
+    "date": "09/09/2025",
+    "excerpt": "Aposentadoria e como funciona",
+    "url": "post.html?slug=como-funciona-aposentadoria"
+  }
+]
