@@ -583,7 +583,7 @@ a {
 
   .about {
     grid-template-columns: 1fr;
-    text-align: center;
+    text-align: justify;
   }
 
   .about-media {
