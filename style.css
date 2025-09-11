@@ -660,7 +660,7 @@ a {
 
 @media (max-width: 440px) {
   .theme-switch {
-    --toggle-size: 10px;
+    --toggle-size: 8px;
   }
 }
 
