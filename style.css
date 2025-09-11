@@ -540,6 +540,12 @@ a {
   font-size: var(--toggle-size);
 }
 
+@media (max-width: 440px) {
+  .theme-switch {
+    --toggle-size: 7px;
+  }
+}
+
 .theme-switch__container {
   width: var(--container-width);
   height: var(--container-height);
