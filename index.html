@@ -225,6 +225,24 @@
       <div class="container">
         <h2>Artigos & Notícias - <a href="post.html" target="_blank"><span class="acessar-materia">Acessar toda a
               matéria</span></a></h2>
+        
+        <!-- Barra de Pesquisa -->
+        <div class="search-container">
+          <div class="search-wrapper">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="m21 21-4.35-4.35"/>
+            </svg>
+            <input type="text" id="searchInput" placeholder="Pesquisar por título ou conteúdo..." class="search-input" aria-label="Pesquisar artigos">
+            <button id="clearSearch" class="clear-btn" aria-label="Limpar pesquisa" title="Limpar pesquisa">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        
         <p class="section-sub">Publicações jurídicas para informar e orientar.</p>
         <div id="posts" class="grid posts"></div>
         <p id="no-posts" class="muted" hidden>Nenhuma publicação encontrada.</p>
