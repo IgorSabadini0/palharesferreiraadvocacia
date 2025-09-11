@@ -42,7 +42,10 @@ body {
 
 /* Respeita usuários com redução de movimento */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
@@ -291,6 +294,7 @@ a {
 .card.highlight {
   outline: 2px dashed rgba(201, 162, 39, .45)
 }
+
 .about {
   display: grid;
   grid-template-columns: .9fr 1.1fr;
@@ -542,7 +546,7 @@ a {
 
 @media (max-width: 440px) {
   .theme-switch {
-    --toggle-size: 7px;
+    --toggle-size: 10px;
   }
 }
 
@@ -700,10 +704,12 @@ a {
     transform: scale(1);
     box-shadow: 0 0 20px rgba(255, 215, 82, 0.3);
   }
+
   50% {
     transform: scale(1.02);
     box-shadow: 0 0 30px rgba(255, 215, 82, 0.5);
   }
+
   100% {
     transform: scale(1);
     box-shadow: 0 0 20px rgba(255, 215, 82, 0.3);
@@ -721,10 +727,12 @@ a {
     transform: scale(1);
     box-shadow: 0 0 20px rgba(196, 155, 23, 0.4);
   }
+
   50% {
     transform: scale(1.02);
     box-shadow: 0 0 30px rgba(196, 155, 23, 0.6);
   }
+
   100% {
     transform: scale(1);
     box-shadow: 0 0 20px rgba(196, 155, 23, 0.4);
