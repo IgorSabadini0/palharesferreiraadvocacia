@@ -20,20 +20,27 @@ const CONFIG = {
   const saved = localStorage.getItem("theme");
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-  // NOVO: Seleciona a imagem do logo que será alterada.
+  // Seleciona as imagens dos logos que serão alteradas
   const logoImg = document.querySelector(".logo");
+  const ringLogoImg = document.querySelector(".ring-logo");
 
   /**
-   * NOVO: Esta é a nossa função de documentação.
-   * Ela verifica se a classe 'dark' está presente no elemento <html> (root).
-   * Se estiver, usa o logo para o modo escuro. Caso contrário, usa o logo padrão.
+   * Função para atualizar os logos baseado no tema atual.
+   * Modo escuro: usa logo.svg
+   * Modo claro: usa logodark.svg
    */
-  function updateLogo() {
-    // Garante que o código não quebre se o elemento do logo não for encontrado.
-    if (!logoImg) return;
-
+  function updateLogos() {
     const isDark = root.classList.contains("dark");
-    logoImg.src = isDark ? 'assets/logo.svg' : 'assets/logodark.svg';
+    
+    // Atualiza logo do header
+    if (logoImg) {
+      logoImg.src = isDark ? 'assets/logo.svg' : 'assets/logodark.svg';
+    }
+    
+    // Atualiza logo do ring
+    if (ringLogoImg) {
+      ringLogoImg.src = isDark ? 'assets/logo.svg' : 'assets/logodark.svg';
+    }
   }
 
   // A lógica original para definir o tema no carregamento da página.
@@ -43,8 +50,8 @@ const CONFIG = {
     root.classList.toggle("dark", prefersDark);
   }
 
-  // NOVO: Chamamos a função aqui para que o logo correto seja exibido assim que a página carregar.
-  updateLogo();
+  // Chama a função para que os logos corretos sejam exibidos assim que a página carregar.
+  updateLogos();
 
   const themeCheckbox = document.querySelector(".theme-switch__checkbox");
   if (themeCheckbox) {
@@ -54,8 +61,8 @@ const CONFIG = {
       root.classList.toggle("dark", isDark);
       localStorage.setItem("theme", isDark ? "dark" : "light");
 
-      // NOVO: Também chamamos a função aqui, para que o logo mude sempre que o tema for alternado.
-      updateLogo();
+      // Chama a função para que os logos mudem sempre que o tema for alternado.
+      updateLogos();
     });
   }
 })();

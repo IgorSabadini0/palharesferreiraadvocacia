@@ -194,8 +194,18 @@ a {
   width: 70%;
   aspect-ratio: 1;
   border-radius: 50%;
-  border: 2px dashed rgba(201, 162, 39, .35);
+  border: 2px dashed rgba(57, 90, 108, .35);
   animation: spin 22s linear infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero .ring-logo {
+  width: 60%;
+  height: auto;
+  max-width: 160px;
+  animation: counter-spin 22s linear infinite;
 }
 
 @keyframes float {
@@ -216,6 +226,16 @@ a {
   }
 }
 
+@keyframes counter-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -226,9 +246,12 @@ a {
   font-weight: 600;
   transition: all .2s ease;
   box-shadow: var(--shadow);
-  min-height: 44px; /* Tamanho mínimo para touch */
-  touch-action: manipulation; /* Melhora a responsividade do touch */
-  -webkit-tap-highlight-color: transparent; /* Remove highlight no iOS */
+  min-height: 44px;
+  /* Tamanho mínimo para touch */
+  touch-action: manipulation;
+  /* Melhora a responsividade do touch */
+  -webkit-tap-highlight-color: transparent;
+  /* Remove highlight no iOS */
 }
 
 .btn-primary {
@@ -272,7 +295,7 @@ a {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   .posts {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -687,7 +710,8 @@ a {
   .btn {
     padding: 0.7rem 1rem;
     font-size: 0.9rem;
-    min-height: 44px; /* Tamanho mínimo para touch */
+    min-height: 44px;
+    /* Tamanho mínimo para touch */
   }
 
   .section {
