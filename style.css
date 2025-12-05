@@ -476,11 +476,6 @@ a {
   transform: scale(1);
 }
 
-.calendar {
-  width: 30px;
-  height: 30px;
-}
-
 /* Modo escuro para barra de pesquisa */
 :root.dark .search-input {
   background: var(--card);
