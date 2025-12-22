@@ -325,3 +325,39 @@ loadPosts().then(() => {
 // -------------------------------------------------------
 // Ano no rodapé
 document.getElementById("year").textContent = new Date().getFullYear();
+
+// -------------------------------------------------------
+// AVISO DE RECESSO
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("recessModal");
+  const closeBtn = document.getElementById("closeModalBtn");
+
+  // Data limite para exibir o aviso: 06 de Janeiro de 2026
+  // O aviso deixará de aparecer automaticamente quando chegar essa data
+  const dataLimite = new Date("2026-01-06T00:00:00");
+  const agora = new Date();
+
+  // Só exibe se a data atual for ANTERIOR à data limite
+  if (modal && closeBtn && agora < dataLimite) {
+    // Mostrar após 2 segundos
+    setTimeout(() => {
+      modal.classList.add("show");
+      modal.setAttribute("aria-hidden", "false");
+    }, 500);
+
+    // Fechar ao clicar no botão
+    closeBtn.addEventListener("click", () => {
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden", "true");
+    });
+
+    // Fechar ao clicar fora do modal
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.remove("show");
+        modal.setAttribute("aria-hidden", "true");
+      }
+    });
+  }
+});
+
