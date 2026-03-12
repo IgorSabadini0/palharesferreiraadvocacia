@@ -227,12 +227,13 @@ a {
 }
 
 @keyframes counter-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(-360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-360deg);
+  }
 }
 
 
@@ -1131,72 +1132,5 @@ a {
   100% {
     transform: scale(1);
     box-shadow: 0 0 20px rgba(196, 155, 23, 0.4);
-  }
-}
-
-/* Modal de Recesso */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.modal-overlay.show {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modal-content {
-  background: var(--bg);
-  color: var(--text);
-  padding: 2rem;
-  border-radius: 8px;
-  max-width: 500px;
-  width: 90%;
-  position: relative;
-  box-shadow: var(--shadow);
-  text-align: center;
-  border: 1px solid var(--border);
-}
-
-.modal-content h2 {
-  color: var(--brand);
-  margin-top: 0;
-}
-
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: var(--muted);
-}
-
-.close-btn:hover {
-  color: var(--text);
-}
-
-/* Ajustes responsivos para o modal */
-@media (max-width: 480px) {
-  .modal-content {
-    padding: 1.5rem;
-    width: 95%;
-  }
-
-  .modal-content h2 {
-    font-size: 1.5rem;
   }
 }

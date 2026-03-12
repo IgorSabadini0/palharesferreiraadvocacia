@@ -326,4 +326,20 @@ loadPosts().then(() => {
 // Ano no rodapé
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// -------------------------------------------------------
+// -------------------------------------------------------]
+// <-- AVISO DE GOLPE -->
+
+// Função para abrir o modal ao carregar a página
+window.onload = function () {
+  // Verifica se o usuário já viu o aviso nesta sessão para não ser chato
+  if (!sessionStorage.getItem('avisoGolpeVisto')) {
+    document.getElementById('modalGolpe').style.display = 'flex';
+  }
+};
+
+// Função para fechar o modal
+function fecharModal() {
+  document.getElementById('modalGolpe').style.display = 'none';
+  // Salva que o usuário já viu o aviso
+  sessionStorage.setItem('avisoGolpeVisto', 'true');
+}
