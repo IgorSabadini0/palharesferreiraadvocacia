@@ -31,12 +31,12 @@ const CONFIG = {
    */
   function updateLogos() {
     const isDark = root.classList.contains("dark");
-    
+
     // Atualiza logo do header
     if (logoImg) {
       logoImg.src = isDark ? 'assets/logo.svg' : 'assets/logodark.svg';
     }
-    
+
     // Atualiza logo do ring
     if (ringLogoImg) {
       ringLogoImg.src = isDark ? 'assets/logo.svg' : 'assets/logodark.svg';
@@ -116,10 +116,10 @@ async function loadPosts() {
     if (!res.ok) throw new Error("Falha ao carregar posts.json");
     const posts = await res.json();
     allPosts = posts; // Armazena posts para pesquisa
-    
+
     // Carrega conteúdo completo dos posts em background
     loadPostsContent(posts);
-    
+
     renderPosts(posts);
   } catch (e) {
     console.warn(e);
@@ -135,30 +135,30 @@ async function loadPostsContent(posts) {
     try {
       const slug = new URLSearchParams(post.url.split('?')[1]).get('slug');
       const postUrl = slug ? `posts/${slug}.html` : post.url;
-      
+
       const response = await fetch(postUrl, { cache: "no-store" });
       if (response.ok) {
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
-        
+
         // Tenta diferentes seletores para encontrar o conteúdo principal
         const contentSelectors = [
           '.post-content',
-          '.content', 
+          '.content',
           'main article',
           'article',
           'main',
           '.post-body',
           '.entry-content'
         ];
-        
+
         let contentElement = null;
         for (const selector of contentSelectors) {
           contentElement = doc.querySelector(selector);
           if (contentElement) break;
         }
-        
+
         // Se não encontrou, usa o body mas remove header, nav, footer
         if (!contentElement) {
           contentElement = doc.body;
@@ -168,17 +168,17 @@ async function loadPostsContent(posts) {
             elementsToRemove.forEach(el => el.remove());
           }
         }
-        
+
         const textContent = contentElement ? contentElement.textContent || contentElement.innerText : '';
-        
+
         // Remove espaços extras, quebras de linha e caracteres especiais
         const cleanContent = textContent
           .replace(/\s+/g, ' ')
           .replace(/[^\w\sáàâãéèêíìîóòôõúùûçÁÀÂÃÉÈÊÍÌÎÓÒÔÕÚÙÛÇ]/gi, ' ')
           .trim();
-        
+
         postsContent[post.url] = cleanContent;
-        
+
         // Atualiza o placeholder da pesquisa para indicar que o conteúdo foi carregado
         updateSearchPlaceholder();
       }
@@ -187,7 +187,7 @@ async function loadPostsContent(posts) {
       postsContent[post.url] = post.excerpt || '';
     }
   });
-  
+
   await Promise.all(promises);
 }
 
@@ -202,7 +202,7 @@ function updateSearchPlaceholder() {
 function renderPosts(posts) {
   const list = document.getElementById("posts");
   const empty = document.getElementById("no-posts");
-  
+
   // Limpa posts existentes
   list.innerHTML = "";
 
@@ -210,9 +210,9 @@ function renderPosts(posts) {
     empty.hidden = false;
     return;
   }
-  
+
   empty.hidden = true;
-  
+
   // Ordena por data desc
   posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
@@ -221,11 +221,11 @@ function renderPosts(posts) {
     card.className = "post-card";
     const date = new Date(p.date);
     const dateStr = date.toLocaleDateString("pt-BR", { year: "numeric", month: "short", day: "2-digit" });
-    
+
     // Extrai o slug da URL para criar o link de navegação
     const slug = new URLSearchParams(p.url.split('?')[1]).get('slug');
     const navigationUrl = slug ? `post.html?slug=${slug}` : p.url;
-    
+
     card.innerHTML = `
       <div class="post-meta">🗓️ <span>${dateStr}</span></div>
       <h3><a href="${navigationUrl}" rel="noopener">${p.title}</a></h3>
@@ -239,9 +239,9 @@ function renderPosts(posts) {
 function initSearch() {
   const searchInput = document.getElementById("searchInput");
   const clearBtn = document.getElementById("clearSearch");
-  
+
   if (!searchInput || !clearBtn) return;
-  
+
   // Função de pesquisa
   function searchPosts(query) {
     if (!query.trim()) {
@@ -249,41 +249,41 @@ function initSearch() {
       clearBtn.classList.remove("visible");
       return;
     }
-    
+
     clearBtn.classList.add("visible");
-    
+
     const filteredPosts = allPosts.filter(post => {
       // Busca no título e excerpt primeiro
       const titleExcerpt = `${post.title} ${post.excerpt || ""}`.toLowerCase();
-      
+
       // Se encontrou no título/excerpt, retorna true
       if (titleExcerpt.includes(query.toLowerCase())) {
         return true;
       }
-      
+
       // Busca no conteúdo completo se disponível
       const fullContent = postsContent[post.url];
       if (fullContent) {
         return fullContent.toLowerCase().includes(query.toLowerCase());
       }
-      
+
       return false;
     });
-    
+
     renderPosts(filteredPosts);
   }
-  
+
   // Event listeners
   searchInput.addEventListener("input", (e) => {
     searchPosts(e.target.value);
   });
-  
+
   clearBtn.addEventListener("click", () => {
     searchInput.value = "";
     searchInput.focus();
     searchPosts("");
   });
-  
+
   // Limpa pesquisa ao pressionar Escape
   searchInput.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
@@ -296,7 +296,7 @@ function initSearch() {
 // Carrega posts e inicializa pesquisa
 loadPosts().then(() => {
   initSearch();
-  
+
   // Adiciona indicador de carregamento
   const searchInput = document.getElementById("searchInput");
   if (searchInput) {
@@ -327,37 +327,3 @@ loadPosts().then(() => {
 document.getElementById("year").textContent = new Date().getFullYear();
 
 // -------------------------------------------------------
-// AVISO DE RECESSO
-document.addEventListener("DOMContentLoaded", () => {
-  const modal = document.getElementById("recessModal");
-  const closeBtn = document.getElementById("closeModalBtn");
-
-  // Data limite para exibir o aviso: 06 de Janeiro de 2026
-  // O aviso deixará de aparecer automaticamente quando chegar essa data
-  const dataLimite = new Date("2026-01-06T00:00:00");
-  const agora = new Date();
-
-  // Só exibe se a data atual for ANTERIOR à data limite
-  if (modal && closeBtn && agora < dataLimite) {
-    // Mostrar após 2 segundos
-    setTimeout(() => {
-      modal.classList.add("show");
-      modal.setAttribute("aria-hidden", "false");
-    }, 500);
-
-    // Fechar ao clicar no botão
-    closeBtn.addEventListener("click", () => {
-      modal.classList.remove("show");
-      modal.setAttribute("aria-hidden", "true");
-    });
-
-    // Fechar ao clicar fora do modal
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        modal.classList.remove("show");
-        modal.setAttribute("aria-hidden", "true");
-      }
-    });
-  }
-});
-
