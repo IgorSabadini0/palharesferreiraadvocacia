@@ -901,7 +901,85 @@ a {
   }
 }
 
+.copy-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+  width: fit-content;
+}
 
+.btn-copy {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: #555;
+  transition: color 0.2s;
+}
+
+.btn-copy:hover {
+  color: var(--brand);
+}
+
+/* Toast adaptado ao tema Palhares Ferreira */
+.toast {
+  visibility: hidden;
+  position: fixed;
+  z-index: 100;
+  /* Acima do header e FABs */
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%) translateY(20px);
+
+  /* Cores baseadas no seu :root */
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--brand);
+  /* Destaque com a cor da marca */
+  box-shadow: var(--shadow);
+
+  min-width: 280px;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+  font-family: inherit;
+  font-weight: 500;
+}
+
+.toast-icon {
+  background: var(--brand);
+  color: #111827;
+  /* Cor escura para contraste no amarelo */
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+/* Classe de ativação */
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Respeita redução de movimento do seu CSS */
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    transition: none !important;
+  }
+}
 
 /* Theme Switch */
 .theme-switch {

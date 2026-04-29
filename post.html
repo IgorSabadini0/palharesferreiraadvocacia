@@ -22,6 +22,8 @@
   <meta name="twitter:title" content="Artigos — Palhares Ferreira Advocacia" />
   <meta name="twitter:description" content="Confira todos os artigos e notícias do nosso blog." />
   <meta name="twitter:image" content="https://www.seudominio.com.br/assets/og-image.png" />
+  <script src="https://kit.fontawesome.com/a8f4be2bb0.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -34,9 +36,27 @@
     "isPartOf": {
       "@type": "WebSite",
       "name": "Palhares Ferreira Advocacia",
-      "url": "https://www.seudominio.com.br/"
+      "url": "https://www.palharesferreiraadvocacia.com.br/"
     }
   }
+  </script>
+
+  <script>
+    function copyText() {
+      // Captura o texto do elemento
+      const text = document.getElementById("numProcGolpeBanco").innerText;
+      const toast = document.getElementById("toast");
+      // Usa a Clipboard API para copiar
+      navigator.clipboard.writeText(text).then(() => {
+        toast.classList.add("show");
+
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 800);
+      }).catch(err => {
+        console.error("Erro ao copiar: ", err);
+      });
+    }
   </script>
   <header class="header">
     <div class="container nav">
@@ -206,28 +226,28 @@
     function navigateToSpecificPost() {
       const urlParams = new URLSearchParams(window.location.search);
       const targetSlug = urlParams.get('slug');
-      
+
       if (!targetSlug) return; // Se não há slug, não faz nada
-      
+
       // Aguarda o carregamento dos posts
       setTimeout(() => {
         const container = document.getElementById('allPostsContainer');
         if (!container) return;
-        
+
         // Procura pelo artigo que corresponde ao slug usando o atributo data-slug
         const targetArticle = container.querySelector(`article[data-slug="${targetSlug}"]`);
-        
+
         if (targetArticle) {
           // Adiciona classe de destaque
           targetArticle.classList.add('highlighted-post');
-          
+
           // Faz scroll suave para o artigo
-          targetArticle.scrollIntoView({ 
-            behavior: 'smooth', 
+          targetArticle.scrollIntoView({
+            behavior: 'smooth',
             block: 'start',
             inline: 'nearest'
           });
-          
+
           // Remove o destaque após 3 segundos
           setTimeout(() => {
             targetArticle.classList.remove('highlighted-post');
@@ -235,7 +255,7 @@
         }
       }, 1000); // Aguarda 1 segundo para garantir que os posts foram carregados
     }
-    
+
     // Chama a função de navegação quando a página carrega
     navigateToSpecificPost();
   </script>
